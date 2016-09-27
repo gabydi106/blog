@@ -41,7 +41,7 @@
         <h1>
 <a id="gabys-internship-at-cylix-technologies" class="anchor" href="#gabys-internship-at-cylix-technologies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Gaby's Internship at Cylix Technologies</h1>
 
-<p>Gaby is a senior at McGill University studying Computer Science and International Development Studies. This September she started an internship and is working with the IT Team of Cylix Technologies, Inc.</p>
+<p>Gaby is a senior at McGill University studying Computer Science and International Development Studies. This September she started an internship and is working with the IT Team of Cylix Technologies, Inc.  It is one of the market leaders, as well as one of the fastest growing companies in the <strong>Security and Surveillance Technology Industry</strong> in the Philippines.</p>
 
 <h2>
 <a id="day-1-erpnext-and-frappe" class="anchor" href="#day-1-erpnext-and-frappe" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Day 1: ERPnext and Frappe</h2>
@@ -50,11 +50,11 @@
 
 <hr>
 
-<p>I have started my internship at Cylix Technologies, Inc. Cylix Technologies is one of the market leaders, as well as one of the fastest growing companies in the <strong>Security and Surveillance Technology Industry</strong> in the Philippines.</p>
+<p>During my internship, I intend to put into practice the skills and knowledge I have acquired from school in a real-life working environment. I also intend to form the habit of documenting my progress through this blog.</p>
 
-<p>I have been assigned an email address: <a href="">gaby.di@cylix.ph</a> which I can login to at <a href="">http://webmail.cylix.ph</a>. I was also granted access to the company's intranet and WordPress. </p>
+<p>My goal at the end of this internship is to gain new experiences and insights and to broaden my horizons in terms of my professional career.</p>
 
-<p>I spent my first 3 hours learning about <strong>ERPnext and Frappe</strong>.</p>
+<p>I will primarily be working with the <strong>ERPnext and Frappe</strong> frameworks and developing in Python.</p>
 
 <ul>
 <li><p><strong>ERPNext</strong> is a free and open-source integrated <strong>Enterprise Resource Planning (ERP)</strong> software for the web developed by <em>Frappé Technologies Pvt. Ltd.</em> and is built on <strong>MariaDB</strong> database system using a <strong>Python</strong> based server-side framework. </p></li>
@@ -75,7 +75,7 @@
 
 <p>When VirtualBox Boots, login using user: frappe and password: frappe</p>
 
-<p>Afterwards, input the followings command in order to start Frappe Bench. Without this step the host site will not launch.</p>
+<p>Afterwards, input the followings command in order to start Frappe Bench. This step initializes an instance of ERPnext and pushes it onto the local server website.</p>
 
 <pre><code>cd frappe-bench
 bench start
@@ -84,19 +84,18 @@ bench start
 <p>Then, on the HOST machine (mine is Windows 10), use the browser and go to:</p>
 
 <ul>
-<li>
-<a href=""> http://localhost 8080</a></li>
+<li><a href="">http://localhost 8080</a></li>
 </ul>
 
 <p>and login using:</p>
 
 <ul>
 <li>user: Administrator</li>
-<li>password: admin</li>
+<li>password: admin // changed to frappe</li>
 </ul>
 
 <h3>
-<a id="i-learned-a-few-new-commands-today" class="anchor" href="#i-learned-a-few-new-commands-today" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>I learned a few new commands today:</h3>
+<a id="commands-i-usedlearned-today" class="anchor" href="#commands-i-usedlearned-today" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Commands I used/learned today:</h3>
 
 <pre><code>ifconfig | grep HWaddr --&gt; Linux, specifically returns MAC address
 
@@ -106,6 +105,113 @@ ping google.com --&gt; to check there is an active internet connection
 ping facebook.com
 
 Ctrl + C --&gt; to exit a particular command in terminal/cmdline
+</code></pre>
+
+<h2>
+<a id="day-2-erpnext-and-frappe" class="anchor" href="#day-2-erpnext-and-frappe" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Day 2: ERPnext and Frappe</h2>
+
+<p><em>Sept 27, 2016</em></p>
+
+<hr>
+
+<p>Now that I have a working ERPNext instance, I can play around with it and start developing modules.</p>
+
+<p>I started out by generating random data to fill my sample database. For this I created my own mock up company, "Intergalactic Robotics, Inc.", </p>
+
+<h3>
+<a id="introduction-to-erpnext-module-development" class="anchor" href="#introduction-to-erpnext-module-development" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introduction to ERPnext Module Development</h3>
+
+<h4>
+<a id="making-a-new-app" class="anchor" href="#making-a-new-app" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Making a new App</h4>
+
+<p>To make a new application, go to your bench folder and run, <code>bench new-app {app_name}</code> and fill in details about the application. This will create a boilerplate application for you.</p>
+
+<pre><code>bench new-app [appName]
+bench new-app library_management
+</code></pre>
+
+<h4>
+<a id="setting-up-the-site" class="anchor" href="#setting-up-the-site" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Setting up the Site</h4>
+
+<pre><code>bench new-site [siteName]
+bench new-site library
+</code></pre>
+
+<h4>
+<a id="installing-app" class="anchor" href="#installing-app" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installing app</h4>
+
+<pre><code>bench use [siteName] // to set the default site
+
+bench --site [siteName] install-app [appName]
+bench --site library_management install-app library
+</code></pre>
+
+<p>After installing the app, it is ready to be run. </p>
+
+<pre><code>bench start
+</code></pre>
+
+<p>In order to fully customize and create my app, I had to switch on developer mode to "1". This setting is located in </p>
+
+<pre><code>sites/library/sites_config.json
+</code></pre>
+
+<p>Alternatively, one can also execute:</p>
+
+<pre><code>bench --site [siteName] set-config developer_mode 1
+bench --site library set-config developer_mode 1
+</code></pre>
+
+<h4>
+<a id="creating-roles" class="anchor" href="#creating-roles" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating Roles</h4>
+
+<p>Before creating Models, I created Roles so that I can set permissions on the Model. There are two Roles I created for my Library Management System:</p>
+
+<ul>
+<li>Librarian</li>
+<li>Library Member</li>
+</ul>
+
+<p>To create a new Role, go to:</p>
+
+<pre><code>Setup &gt; Users &gt; Role &gt; New
+</code></pre>
+
+<h4>
+<a id="doctype" class="anchor" href="#doctype" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>DocType</h4>
+
+<p>After creating the Roles, I created the DocTypes.</p>
+
+<p>To create a new DocType, go to:</p>
+
+<pre><code>Developer &gt; Documents &gt; Doctype &gt; New
+</code></pre>
+
+<p>My new <code>DocTypes</code> are:</p>
+
+<ul>
+<li>Article </li>
+<li>Library Member</li>
+<li>Library Transaction</li>
+<li>Library Membership</li>
+</ul>
+
+<p>Each <code>DocType</code> was assigned <code>fields</code>, specific naming conventions, and search fields so it can become searchable.</p>
+
+<h3>
+<a id="commands-i-usedlearned-today-1" class="anchor" href="#commands-i-usedlearned-today-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Commands I used/learned today:</h3>
+
+<pre><code>bench --reinstall // this clears the database to give the app a fresh reset
+
+bench --site [siteName] uninstall-app [appName]
+
+vi [fileName] 
+
+to enter insert mode: `i` or `a`, to save and exit: `ESC` + wq
+
+ls -a // to check if swap (.swp) files or other hidden files are in the folder
+
+rm [fileName] // remove the file (delete)
 </code></pre>
       </section>
 
